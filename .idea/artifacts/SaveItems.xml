@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SaveItems">
+    <output-path>$PROJECT_DIR$/out/artifacts/SaveItems</output-path>
+    <root id="archive" name="SaveItems.jar">
+      <element id="module-output" name="SaveItems" />
+    </root>
+  </artifact>
+</component>

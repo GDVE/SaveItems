@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="spigot-1.7.10-SNAPSHOT-b1657">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../lib/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/WorldEdit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/WorldGuard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../lib/spigot-1.7.10-SNAPSHOT-b1657.jar!/" />
+    </SOURCES>
+  </library>
+</component>

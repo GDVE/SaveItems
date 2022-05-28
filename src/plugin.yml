@@ -1,0 +1,7 @@
+name: SaveItems
+version: 3.0
+main: ru.simplemc.saveitems.SaveItems
+prefix: SaveItems
+authors: [Goodvise]
+description: Save items for players post death.
+website: https://simpleminecraft.ru
