@@ -22,7 +22,7 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void PlayerDeathEvent(PlayerDeathEvent event) {
+    public void onPlayerDeathEvent(PlayerDeathEvent event) {
 
         Player player = event.getEntity();
 
@@ -31,35 +31,43 @@ public class PlayerListener implements Listener {
         }
 
         if (manager.canSavePlayerInventory(player)) {
-            manager.savePlayerInventory(player);
-            event.setKeepInventory(true);
+            if (!manager.isPlayerAlreadyInventorySaved(player)) {
+                manager.savePlayerInventory(player);
+                event.setKeepInventory(true);
+            }
+
             event.getDrops().clear();
             Bukkit.getScheduler().runTaskLater(plugin, () -> manager.tryToRespawnPlayer(player), 60L);
         }
 
         if (manager.canSavePlayerExperience(player)) {
-            manager.savePlayerExperience(player);
+            if (!manager.isPlayerExperienceAlreadySaved(player)) {
+                manager.savePlayerExperience(player);
+            }
+
             event.setDroppedExp(0);
         }
     }
 
     @EventHandler
-    public void PlayerRespawnEvent(PlayerRespawnEvent event) {
+    public void onPlayerRespawnEvent(PlayerRespawnEvent event) {
         Bukkit.getScheduler().runTaskLater(plugin, () -> manager.restorePlayer(event.getPlayer()), 10L);
     }
 
     @EventHandler
-    public void PlayerDropItemEvent(PlayerDropItemEvent event) {
+    public void onPlayerDropItemEvent(PlayerDropItemEvent event) {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("SaveItems.items") && player.getHealth() < 3.0D || manager.isPlayerInventorySaved(player)) {
+        if ((player.hasPermission("SaveItems.items") && player.getHealth() < 3.0D)
+                || manager.isPlayerAlreadyInventorySaved(player)) {
+
             event.getItemDrop().remove();
         }
     }
 
     @EventHandler
-    public void PlayerKickEvent(PlayerKickEvent event) {
+    public void onPlayerKickEvent(PlayerKickEvent event) {
 
         Player player = event.getPlayer();
 
@@ -69,7 +77,7 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void PlayerQuitEvent(PlayerQuitEvent event) {
+    public void onPlayerQuitEvent(PlayerQuitEvent event) {
 
         Player player = event.getPlayer();
 

@@ -16,8 +16,12 @@ public class PlayersSavingManager {
     private final PlayersContentsMap<PlayerInventory> playersInventories = new PlayersContentsMap<>();
     private final PlayersContentsMap<PlayerExperience> playersExperiences = new PlayersContentsMap<>();
 
-    public boolean isPlayerInventorySaved(Player player) {
+    public boolean isPlayerAlreadyInventorySaved(Player player) {
         return playersInventories.containsPlayer(player);
+    }
+
+    public boolean isPlayerExperienceAlreadySaved(Player player) {
+        return playersExperiences.containsPlayer(player);
     }
 
     public boolean canSavePlayerInventory(Player player) {
@@ -33,11 +37,11 @@ public class PlayersSavingManager {
             }
         }
 
-        return player.hasPermission("SaveItems.items") && !isPlayerInventorySaved(player);
+        return player.hasPermission("SaveItems.items");
     }
 
     public boolean canSavePlayerExperience(Player player) {
-        return player.hasPermission("SaveItems.experience") && !playersExperiences.containsPlayer(player);
+        return player.hasPermission("SaveItems.experience");
     }
 
     public void savePlayerInventory(Player player) {
